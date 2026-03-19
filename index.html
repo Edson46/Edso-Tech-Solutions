@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EdsoTech Solutions | Professional IT, AI & Maintenance</title>
+
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+:root {
+  --primary: #38bdf8;
+  --primary-glow: rgba(56, 189, 248, 0.4);
+  --bg-dark: #020617;
+  --card-bg: rgba(15, 23, 42, 0.95);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+html { scroll-behavior: smooth; }
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+
+body {
+  background-color: var(--bg-dark);
+  background-image: linear-gradient(rgba(2, 6, 23, 0.96), rgba(2, 6, 23, 0.96)), 
+                    url('https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background-size: cover; background-position: center; background-attachment: fixed;
+  color: var(--text-main); overflow-x: hidden;
+}
+
+/* NAVIGATION */
+nav {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 15px 8%; background: rgba(2, 6, 23, 0.98);
+  backdrop-filter: blur(15px); position: sticky; top: 0; z-index: 1000;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.logo-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.et-logo {
+  width: 42px; height: 42px; background: linear-gradient(135deg, var(--primary), #818cf8);
+  border-radius: 10px; display: flex; justify-content: center; align-items: center;
+  color: #020617; font-weight: 800; font-size: 1.1rem; box-shadow: 0 0 15px var(--primary-glow);
+}
+.logo-text { font-size: 1.3rem; font-weight: 800; color: #fff; }
+
+/* HERO / ENTRANCE GATE */
+.hero-gate {
+    min-height: 95vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    padding: 40px 8%; text-align: center;
+}
+
+.hero-gate h1 {
+    font-size: clamp(2.2rem, 8vw, 3.8rem); font-weight: 800; margin-bottom: 15px;
+    background: linear-gradient(to bottom, #fff, var(--primary));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+.form-card {
+    background: var(--card-bg); padding: 40px; border-radius: 30px;
+    border: 1px solid rgba(56, 189, 248, 0.3); width: 100%; max-width: 500px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+}
+
+input, textarea {
+    width: 100%; padding: 16px; margin-bottom: 15px; background: #020617;
+    border: 1px solid #1e293b; border-radius: 12px; color: white; font-size: 1rem;
+}
+
+.btn-glow {
+    padding: 18px 30px; background: var(--primary); color: #020617; border: none;
+    border-radius: 50px; font-weight: 800; cursor: pointer; width: 100%;
+    font-size: 1rem; transition: 0.3s;
+}
+.btn-glow:hover { transform: scale(1.02); box-shadow: 0 0 30px var(--primary-glow); }
+
+/* SUCCESS SECTION */
+#success-screen { display: none; text-align: center; padding: 40px; }
+.success-icon { font-size: 5rem; color: #22c55e; margin-bottom: 20px; animation: scaleUp 0.5s ease; }
+@keyframes scaleUp { from { transform: scale(0); } to { transform: scale(1); } }
+
+/* MAIN SERVICES CONTENT */
+#main-site-content { opacity: 0; transform: translateY(50px); transition: 1s ease; }
+.unlocked { opacity: 1 !important; transform: translateY(0) !important; }
+
+section { padding: 80px 8%; }
+.section-title { text-align: center; margin-bottom: 60px; }
+.container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+
+/* SERVICE CARDS */
+.card {
+    background: var(--card-bg); border-radius: 24px;
+    border: 1px solid rgba(255,255,255,0.05); transition: var(--transition);
+    display: flex; flex-direction: column; overflow: hidden;
+}
+
+.card-img {
+    width: 100%; height: 180px; object-fit: cover;
+    background-color: #1e293b; /* Fallback color */
+    border-bottom: 2px solid rgba(56, 189, 248, 0.2);
+}
+
+.card-body { padding: 30px; flex-grow: 1; display: flex; flex-direction: column; }
+.card:hover { border-color: var(--primary); transform: translateY(-10px); background: #0f172a; }
+
+.card i { font-size: 1.8rem; color: var(--primary); margin-bottom: 15px; }
+.card h3 { margin-bottom: 12px; font-size: 1.3rem; color: #fff; }
+.card ul { list-style: none; margin-bottom: 20px; flex-grow: 1; }
+.card li { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+.card li::before { content: '✔'; color: var(--primary); font-weight: bold; }
+
+.price-box {
+    background: rgba(56, 189, 248, 0.1); color: var(--primary);
+    padding: 12px; border-radius: 10px; border: 1px solid var(--primary);
+    text-align: center; font-weight: 800; font-size: 1.1rem;
+}
+
+/* ADMIN PANEL */
+#admin-dashboard { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #020617; z-index: 5000; display: none; padding: 40px 8%; overflow-y: auto; }
+table { width: 100%; border-collapse: collapse; color: #fff; margin-top: 20px; font-size: 0.9rem; }
+th, td { padding: 12px; text-align: left; border-bottom: 1px solid #1e293b; }
+th { background: var(--primary); color: #020617; }
+
+/* FOOTER */
+footer { text-align: center; padding: 80px 8% 40px; border-top: 1px solid rgba(255,255,255,0.05); }
+.admin-trigger { background: transparent; color: #1e293b; border: 1px solid #1e293b; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.75rem; margin-top: 25px; }
+
+.whatsapp { position: fixed; bottom: 30px; right: 30px; background: #25D366; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 30px; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+</style>
+</head>
+<body onload="trackVisit()">
+
+<nav>
+  <a href="#" class="logo-container">
+    <div class="et-logo">ET</div>
+    <div class="logo-text">Edso<span style="color:var(--primary)">Tech</span></div>
+  </a>
+  <div style="font-size: 0.8rem; color: var(--text-muted);"><i class="fas fa-chart-simple"></i> Visitor No: <span id="v-count">0</span></div>
+</nav>
+
+<!-- STEP 1: LEAD GATE -->
+<section class="hero-gate" id="hero-gate">
+    <div id="gate-content">
+        <h1>Advanced Technical Solutions in Tanzania</h1>
+        <p style="color: var(--text-muted); margin-bottom: 30px;">Premium IT, AI & Technical Maintenance | Serving Tanzania</p>
+        
+        <div class="form-card">
+            <form onsubmit="unlockSite(event)">
+                <input type="text" id="custName" placeholder="Full Name" required>
+                <input type="email" id="custEmail" placeholder="Email Address" required>
+                <textarea id="custMsg" rows="3" placeholder="How can EdsoTech help you?" required></textarea>
+                <button type="submit" id="unlockBtn" class="btn-glow">Access Catalog & Pricing</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="success-screen">
+        <i class="fas fa-circle-check success-icon"></i>
+        <h2>Welcome, <span id="welcome-name"></span>!</h2>
+        <p style="color: var(--text-muted);">Access Granted. Loading full website...</p>
+    </div>
+</section>
+
+<!-- STEP 2: MAIN SITE CONTENT -->
+<div id="main-site-content">
+    
+    <section id="services">
+        <div class="section-title">
+            <h2>Our <span>Professional</span> Services</h2>
+            <p style="color: var(--text-muted);">Top-tier digital and technical solutions based in Mbeya City.</p>
+        </div>
+
+        <div class="container">
+            <!-- 1. AI CONSULTANT -->
+            <div class="card">
+                <img src="https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&w=600" class="card-img" alt="AI">
+                <div class="card-body">
+                    <i class="fas fa-brain"></i>
+                    <h3>AI Consultant</h3>
+                    <ul>
+                        <li>AI Workflow Automation</li>
+                        <li>ChatGPT Integrations</li>
+                        <li>Content Automation</li>
+                    </ul>
+                    <div class="price-box">Starts @ 45,000 Tsh</div>
+                </div>
+            </div>
+
+            <!-- 2. WEB DESIGN -->
+            <div class="card">
+                <img src="https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&w=600" class="card-img" alt="Web">
+                <div class="card-body">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Web Design</h3>
+                    <ul>
+                        <li>Responsive Layouts</li>
+                        <li>SEO Optimization</li>
+                        <li>Portfolio Websites</li>
+                    </ul>
+                    <div class="price-box">32,000 Tsh (Unhosted)</div>
+                </div>
+            </div>
+
+            <!-- 3. IT MAINTENANCE -->
+            <div class="card">
+                <img src="https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg?auto=compress&w=600" class="card-img" alt="IT">
+                <div class="card-body">
+                    <i class="fas fa-screwdriver-wrench"></i>
+                    <h3>IT Maintenance</h3>
+                    <ul>
+                        <li>Hardware Diagnostics</li>
+                        <li>OS Installation</li>
+                        <li>RAM/SSD Upgrades</li>
+                    </ul>
+                    <div class="price-box">Starts @ 15,000 Tsh</div>
+                </div>
+            </div>
+
+            <!-- 4. HOUSE SUPPORT -->
+            <div class="card">
+                <img src="https://images.pexels.com/photos/1036936/pexels-photo-1036936.jpeg?auto=compress&w=600" class="card-img" alt="House">
+                <div class="card-body">
+                    <i class="fas fa-bolt"></i>
+                    <h3>House Support</h3>
+                    <ul>
+                        <li>Electrical Fixing</li>
+                        <li>Smart Home Setup</li>
+                        <li>Technical Maintenance</li>
+                    </ul>
+                    <div class="price-box">Starts @ 20,000 Tsh</div>
+                </div>
+            </div>
+
+            <!-- 5. DIGITAL SECURITY -->
+            <div class="card">
+                <img src="https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&w=600" class="card-img" alt="Security">
+                <div class="card-body">
+                    <i class="fas fa-shield-halved"></i>
+                    <h3>Digital Security</h3>
+                    <ul>
+                        <li>Account 2FA Setup</li>
+                        <li>Privacy Consultation</li>
+                        <li>Secure Data Backup</li>
+                    </ul>
+                    <div class="price-box">Starts @ 25,000 Tsh</div>
+                </div>
+            </div>
+
+            <!-- 6. CCTV SURVEILLANCE -->
+            <div class="card">
+                <img src="https://images.pexels.com/photos/4440555/pexels-photo-4440555.jpeg?auto=compress&w=600" class="card-img" alt="CCTV">
+                <div class="card-body">
+                    <i class="fas fa-video"></i>
+                    <h3>Surveillance</h3>
+                    <ul>
+                        <li>CCTV Installation</li>
+                        <li>Mobile Remote Viewing</li>
+                        <li>System Upgrades</li>
+                    </ul>
+                    <div class="price-box">Starts @ 50,000 Tsh</div>
+                </div>
+            </div>
+
+            <!-- 7. PRINTING & BRANDING -->
+            <div class="card">
+                <img src="https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&w=600" class="card-img" alt="Graphic">
+                <div class="card-body">
+                    <i class="fas fa-print"></i>
+                    <h3>Graphic Branding</h3>
+                    <ul>
+                        <li>Logo & Flyer Design</li>
+                        <li>Business Card Print</li>
+                        <li>Marketing Posters</li>
+                    </ul>
+                    <div class="price-box">Starts @ 10,000 Tsh</div>
+                </div>
+            </div>
+
+            <!-- 8. NETWORKING -->
+            <div class="card">
+                <img src="https://images.pexels.com/photos/159304/network-cable-ethernet-computer-159304.jpeg?auto=compress&w=600" class="card-img" alt="Networking">
+                <div class="card-body">
+                    <i class="fas fa-wifi"></i>
+                    <h3>Networking</h3>
+                    <ul>
+                        <li>Office WiFi/LAN Setup</li>
+                        <li>Router Configuration</li>
+                        <li>Signal Boosting</li>
+                    </ul>
+                    <div class="price-box">Starts @ 30,000 Tsh</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCATION BANNER -->
+    <section style="padding-top: 0;">
+        <div style="background: rgba(56,189,248,0.05); padding: 40px; border-radius: 30px; border-left: 6px solid var(--primary); display: flex; align-items: center; gap: 30px; flex-wrap: wrap;">
+            <i class="fas fa-truck-fast" style="font-size: 3rem; color: var(--primary);"></i>
+            <div>
+                <h3 style="margin-bottom: 5px;">Nationwide Tanzania Service</h3>
+                <p style="color: var(--text-muted);">Headquarters: <strong>Iyunga, Mbeya City</strong>. We deliver physical and remote services to every region in Tanzania.</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="admin-dashboard">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+    <h2>EdsoTech Admin Hub</h2>
+    <button onclick="document.getElementById('admin-dashboard').style.display='none'" style="background: red; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold;">Logout</button>
+  </div>
+  <table id="leadsTable">
+    <thead><tr><th>Date/Time</th><th>Customer Name</th><th>Email</th><th>Inquiry</th></tr></thead>
+    <tbody id="leadsBody"></tbody>
+  </table>
+</div>
+
+<footer>
+  <p>&copy; 2024 EdsoTech Solutions - Tanzania</p>
+  <button class="admin-trigger" onclick="openAdminPortal()"><i class="fas fa-user-gear"></i> Admin Dashboard</button>
+</footer>
+
+<a href="https://wa.me/255621275922" class="whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+<script>
+function trackVisit() {
+  let v = localStorage.getItem('siteVisits') || 0;
+  v++;
+  localStorage.setItem('siteVisits', v);
+  document.getElementById('v-count').innerText = v;
+}
+
+function unlockSite(e) {
+    e.preventDefault();
+    const name = document.getElementById('custName').value;
+    const btn = document.getElementById('unlockBtn');
+    
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Authorizing...';
+    btn.disabled = true;
+
+    const lead = {
+        name: name,
+        email: document.getElementById('custEmail').value,
+        msg: document.getElementById('custMsg').value,
+        date: new Date().toLocaleString()
+    };
+    let leads = JSON.parse(localStorage.getItem('customerLeads')) || [];
+    leads.push(lead);
+    localStorage.setItem('customerLeads', JSON.stringify(leads));
+
+    setTimeout(() => {
+        document.getElementById('gate-content').style.display = 'none';
+        document.getElementById('welcome-name').innerText = name;
+        document.getElementById('success-screen').style.display = 'block';
+
+        setTimeout(() => {
+            document.getElementById('main-site-content').classList.add('unlocked');
+            document.getElementById('main-site-content').scrollIntoView({ behavior: 'smooth' });
+        }, 1500);
+    }, 1000);
+}
+
+function openAdminPortal() {
+  const pass = prompt("Owner Access Password:");
+  if(pass === "edso2024") {
+    document.getElementById('admin-dashboard').style.display = 'block';
+    const leads = JSON.parse(localStorage.getItem('customerLeads')) || [];
+    const body = document.getElementById('leadsBody');
+    body.innerHTML = "";
+    leads.reverse().forEach(l => {
+      body.innerHTML += `<tr><td>${l.date}</td><td>${l.name}</td><td>${l.email}</td><td>${l.msg}</td></tr>`;
+    });
+  } else { alert("Incorrect Password"); }
+}
+</script>
+
+</body>
+</html>
